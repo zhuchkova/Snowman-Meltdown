@@ -1,4 +1,4 @@
-from ascii_art import STAGES
+from ascii_art import STAGES, cinput, print_stages, print_word, game_over, success, info
 import random
 
 # List of secret words
@@ -17,7 +17,7 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     and the secret word with underscores for unguessed letters."""
 
     # Stage for the current number of mistakes
-    print(STAGES[mistakes])
+    print_stages(STAGES[mistakes])
     # Build a display version of the secret word.
     display_word = ""
     for letter in secret_word:
@@ -25,7 +25,7 @@ def display_game_state(mistakes, secret_word, guessed_letters):
             display_word += letter + " "
         else:
             display_word += "_ "
-    print("Word: ", display_word)
+    print_word(display_word)
     print("\n")
 
 
@@ -39,11 +39,11 @@ def prompt_user():
     and ensures that only a single alphabetical character is accepted."""
 
     while True:
-        guess = input("Guess a letter: ").lower()
+        guess = cinput("Guess a letter: ").lower()
         if is_single_letter(guess):
             return guess
         else:
-            print("Please provide a single alphabetical character")
+            info("Please provide a single alphabetical character")
 
 
 def play_game():
@@ -51,7 +51,7 @@ def play_game():
     guessed_letters = []
     mistakes = 0
 
-    print("Welcome to Snowman Meltdown!")
+    info("Welcome to Snowman Meltdown!")
     # Display the initial game state.
     display_game_state(mistakes, secret_word, guessed_letters)
 
@@ -65,7 +65,7 @@ def play_game():
         display_game_state(mistakes, secret_word, guessed_letters)
 
     if mistakes < MISTAKE_LIMIT:
-        print("Congrats!!! You saved the snowman!")
+        success("Congrats!!! You saved the snowman!")
     else:
-        print("Game Over! The word was:", secret_word)
-        print(STAGES[mistakes])
+        game_over(secret_word)
+        print_stages(STAGES[mistakes])
