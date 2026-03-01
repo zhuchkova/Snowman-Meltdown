@@ -47,6 +47,7 @@ def prompt_user():
 
 
 def play_game():
+    """The main game function"""
     secret_word = get_random_word()
     guessed_letters = []
     mistakes = 0
