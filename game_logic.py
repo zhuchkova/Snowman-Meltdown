@@ -29,6 +29,23 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     print("\n")
 
 
+def is_single_letter(ch):
+    """Helpful function to ensure a single alphabetical letter."""
+    return len(ch) == 1 and ch.isalpha()
+
+
+def prompt_user():
+    """Asks the user to guess a letter
+    and ensures that only a single alphabetical character is accepted."""
+
+    while True:
+        guess = input("Guess a letter: ").lower()
+        if is_single_letter(guess):
+            return guess
+        else:
+            print("Please provide a single alphabetical character")
+
+
 def play_game():
     secret_word = get_random_word()
     guessed_letters = []
@@ -40,7 +57,7 @@ def play_game():
 
     # Continue prompting the user until either they win or they exceed the mistake limit.
     while mistakes < MISTAKE_LIMIT and len(guessed_letters) < len(secret_word):
-        guess = input("Guess a letter: ").lower()
+        guess = prompt_user()
         if guess not in secret_word:
             mistakes += 1
         else:
