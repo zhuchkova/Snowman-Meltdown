@@ -1,7 +1,7 @@
 from game_logic import play_game
 
 
-def main ():
+def main():
     """Main function to play/replay the snowman game"""
     play_game()
     while True:
