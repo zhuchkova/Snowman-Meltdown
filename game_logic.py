@@ -5,7 +5,7 @@ import random
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
 
 # Maximum number of mistakes allowed
-MISTAKE_LIMIT = 3
+MISTAKE_LIMIT = 5
 
 def get_random_word():
     """Selects a random word from the list."""
